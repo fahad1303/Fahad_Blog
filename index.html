@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fahad's Study Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Fahad's Study Blog</h1>
+        <a href="about.html" class="about-link top-right">About Me</a>
+        <p>Daily updates on Python, SQL, PySpark, and Data Engineering!</p>
+    </header>
+    <main>
+        <h2>Select a Topic</h2>
+        <div class="topics">
+            <div class="card" onclick="goTo('python.html')">
+                <img src="https://img.icons8.com/color/96/000000/python.png" alt="Python">
+                <span>Python</span>
+            </div>
+            <div class="card" onclick="goTo('sql.html')">
+                <img src="https://img.icons8.com/color/96/000000/sql.png" alt="SQL">
+                <span>SQL</span>
+            </div>
+            <div class="card" onclick="goTo('pyspark.html')">
+                <img src="https://img.icons8.com/color/96/000000/apache-spark.png" alt="PySpark">
+                <span>PySpark</span>
+            </div>
+            <div class="card" onclick="goTo('data-engineering.html')">
+                <img src="https://img.icons8.com/color/96/000000/data-configuration.png" alt="Data Engineering">
+                <span>Data Engineering</span>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Fahad's Blog. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
