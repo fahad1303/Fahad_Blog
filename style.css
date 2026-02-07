@@ -27,10 +27,20 @@ main {
 }
 .topics {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 2rem;
     margin-top: 2rem;
+}
+@media (min-width: 700px) {
+    .topics {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        justify-content: center;
+        gap: 2rem;
+    }
 }
 .card {
     background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
@@ -45,6 +55,8 @@ main {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
+    overflow: hidden;
+    word-break: break-word;
 }
 .card:hover {
     transform: translateY(-8px) scale(1.05);
@@ -60,6 +72,11 @@ main {
     font-size: 1.3rem;
     font-weight: bold;
     color: #333;
+    text-align: center;
+    padding: 0 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
 }
 footer {
     background: #222;
@@ -161,6 +178,11 @@ footer {
     .card {
         width: 98vw;
         height: 110px;
+        font-size: 1rem;
+    }
+    .card span {
+        font-size: 1rem;
+        padding: 0 0.2rem;
     }
     .about-link.top-right {
         font-size: 0.85rem;
