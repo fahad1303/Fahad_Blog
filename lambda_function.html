@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambda Functions - Fahad's Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        .lambda-header {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .lambda-header h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            animation: fadeInDown 0.8s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lambda-body {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: slideIn 0.6s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .section p {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .code-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-left: 5px solid #667eea;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .code-box code {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .output-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 5px solid #f5576c;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .example-container {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .example-title {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd89b 0%, #19547b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .syntax-keyword {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        table thead {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        table th, table td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table tbody tr:hover {
+            background: #f5f7fa;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .advantage-box {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 5px solid #43e97b;
+        }
+
+        .disadvantage-box {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #333;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 5px solid #fa709a;
+        }
+
+        .accent-text {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        nav {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 2rem;
+            margin: 0 0.5rem;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .list-item {
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        .list-item:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        strong {
+            color: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <header class="lambda-header">
+        <h1>🔥 Lambda Functions in Python 🔥</h1>
+    </header>
+
+    <nav style="text-align: center; padding: 1rem; background: rgba(255,255,255,0.1);">
+        <a href="python.html" class="nav-link">← Back to Python</a>
+        <a href="index.html" class="nav-link">Home</a>
+    </nav>
+
+    <div class="lambda-body">
+        <!-- Introduction Section -->
+        <div class="section">
+            <h2>📚 What is a Lambda Function?</h2>
+            <p>
+                A <span class="accent-text">Lambda function</span>, also known as an <span class="accent-text">anonymous function</span>, 
+                is a small and unnamed function defined using the <code>lambda</code> keyword in Python. 
+                Unlike regular functions created using the <code>def</code> keyword, lambda functions are written in a 
+                single line and are generally used for short, simple operations.
+            </p>
+            <p>
+                A lambda function can accept <strong>multiple arguments</strong>, but it can contain only 
+                <strong>one expression</strong>. The expression is evaluated and automatically returned.
+            </p>
+            <div class="advantage-box">
+                <strong>💡 Key Point:</strong> Lambda functions are perfect for quick, throwaway functions!
+            </div>
+        </div>
+
+        <!-- Syntax Section -->
+        <div class="section">
+            <h2>🔧 Syntax of Lambda Function</h2>
+            <div class="code-box">
+<code>lambda arguments: expression</code>
+            </div>
+            <div class="example-container">
+                <div class="list-item"><span class="syntax-keyword">lambda</span> → Keyword used to define the function</div>
+                <div class="list-item"><span class="syntax-keyword">arguments</span> → Input parameters (can be one or more)</div>
+                <div class="list-item"><span class="syntax-keyword">expression</span> → A single expression whose result is returned</div>
+            </div>
+        </div>
+
+        <!-- Example 1 -->
+        <div class="section">
+            <h3>📝 Example 1: Lambda with Single Argument</h3>
+            <p>Let's create a lambda function that squares a number:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+square = lambda x: x * x
+print(square(5))
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+25
+                </div>
+            </div>
+            <p>
+                Here, the lambda function takes one argument <code>x</code> and returns its square. 
+                Simple yet powerful! 🎯
+            </p>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="section">
+            <h3>📝 Example 2: Lambda with Multiple Arguments</h3>
+            <p>Lambda functions can handle multiple parameters:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+multiply = lambda a, b: a * b
+print(multiply(4, 6))
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+24
+                </div>
+            </div>
+            <p>
+                In this example, the lambda function takes two arguments and returns their product. 
+                Concise and clean! ✨
+            </p>
+        </div>
+
+        <!-- Comparing def and Lambda -->
+        <div class="section">
+            <h2>⚖️ Comparing `def` Function and Lambda Function</h2>
+            
+            <h3>Using `def` Keyword (Traditional Approach)</h3>
+            <p>The traditional way of defining a function that cubes a number:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+def cube(x):
+    return x * x * x
+
+print(cube(6))
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+216
+                </div>
+            </div>
+
+            <h3>Using Lambda Function (Modern Approach)</h3>
+            <p>The same function using lambda:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+cube = lambda x: x * x * x
+print(cube(6))
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+216
+                </div>
+            </div>
+
+            <div class="advantage-box">
+                <strong>✅ Observation:</strong> Both approaches produce the same result. However, the lambda version 
+                is more concise and suitable when the function logic is simple and used temporarily.
+            </div>
+        </div>
+
+        <!-- Advanced Usage -->
+        <div class="section">
+            <h2>🚀 Using Lambda Inside Another Function</h2>
+            <p>
+                Lambda functions are <strong>most powerful</strong> when used as arguments to higher-order functions 
+                (functions that take other functions as input).
+            </p>
+
+            <h3>Example 1: Using `map()` Function</h3>
+            <p>Apply a lambda function to each element in a list:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+numbers = [1, 2, 3, 4]
+
+squared_numbers = list(map(lambda x: x * x, numbers))
+print(squared_numbers)
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+[1, 4, 9, 16]
+                </div>
+            </div>
+            <p>
+                The <code>map()</code> function applies the lambda function to each element in the list. 
+                Perfect for transformations! 🔄
+            </p>
+
+            <h3>Example 2: Using `filter()` Function</h3>
+            <p>Filter elements from a list based on a condition:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+numbers = [10, 15, 20, 25, 30]
+
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(even_numbers)
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+[10, 20, 30]
+                </div>
+            </div>
+            <p>
+                The <code>filter()</code> function uses the lambda function to select only even numbers from the list. 
+                Great for data filtering! 🎯
+            </p>
+
+            <h3>Example 3: Using `sorted()` with Lambda</h3>
+            <p>Sort data based on a custom key using lambda:</p>
+            <div class="example-container">
+                <div class="example-title">💻 Code:</div>
+                <div class="code-box">
+students = [("Ali", 85), ("Sara", 92), ("John", 78)]
+
+sorted_students = sorted(students, key=lambda x: x[1])
+print(sorted_students)
+                </div>
+            </div>
+            <div class="example-container">
+                <div class="example-title">⚡ Output:</div>
+                <div class="output-box">
+[('John', 78), ('Ali', 85), ('Sara', 92)]
+                </div>
+            </div>
+            <p>
+                Here, the lambda function specifies that sorting should be done based on marks (second element of each tuple). 
+                Flexible sorting made simple! 📊
+            </p>
+        </div>
+
+        <!-- When to Use -->
+        <div class="section">
+            <h2>✅ When to Use Lambda Instead of `def`</h2>
+            <p>Lambda functions are useful in the following scenarios:</p>
+
+            <div class="advantage-box">
+                <strong>1. Short and Simple Operations</strong>
+                <p style="margin: 0.5rem 0 0 0;">When the logic can be written in a single expression.</p>
+            </div>
+
+            <div class="advantage-box">
+                <strong>2. Temporary Functions</strong>
+                <p style="margin: 0.5rem 0 0 0;">When the function is needed only once and does not require reuse.</p>
+            </div>
+
+            <div class="advantage-box">
+                <strong>3. Functional Programming Use Cases</strong>
+                <p style="margin: 0.5rem 0 0 0;">When working with built-in functions like <code>map()</code>, <code>filter()</code>, <code>reduce()</code>, or <code>sorted()</code>.</p>
+            </div>
+
+            <div class="advantage-box">
+                <strong>4. Improving Code Readability (in Small Cases)</strong>
+                <p style="margin: 0.5rem 0 0 0;">When defining a full function using <code>def</code> would make the code unnecessarily lengthy.</p>
+            </div>
+        </div>
+
+        <!-- When NOT to Use -->
+        <div class="section">
+            <h2>❌ When NOT to Use Lambda</h2>
+            <p>Avoid lambda functions in these scenarios:</p>
+
+            <div class="disadvantage-box">
+                <strong>• Complex Logic:</strong> The logic is complex and requires multiple statements.
+            </div>
+
+            <div class="disadvantage-box">
+                <strong>• Documentation Needed:</strong> You need proper documentation (docstrings).
+            </div>
+
+            <div class="disadvantage-box">
+                <strong>• High Reusability:</strong> The function must be reused in multiple places.
+            </div>
+
+            <div class="disadvantage-box">
+                <strong>• Code Clarity Risk:</strong> Code readability may decrease due to overuse.
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="section">
+            <h2>📊 Key Differences Between `def` and Lambda</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>`def` Function</th>
+                        <th>Lambda Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td>Has a function name</td>
+                        <td>Anonymous (can be assigned to variable)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Number of Expressions</strong></td>
+                        <td>Multiple statements allowed</td>
+                        <td>Only one expression</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Readability</strong></td>
+                        <td>Better for complex logic</td>
+                        <td>Better for simple logic</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reusability</strong></td>
+                        <td>High</td>
+                        <td>Usually temporary</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2>🎓 Conclusion</h2>
+            <p>
+                Lambda functions provide a <strong>concise and efficient</strong> way to define small, single-expression 
+                functions in Python. They are <strong>especially powerful</strong> when used with higher-order functions 
+                such as <code>map()</code>, <code>filter()</code>, and <code>sorted()</code>.
+            </p>
+            <p>
+                However, they should be used thoughtfully. For simple, one-line operations, lambda functions make the code 
+                cleaner and more compact. For complex logic, traditional functions defined using the <code>def</code> keyword 
+                are more appropriate and maintainable.
+            </p>
+            <div class="advantage-box">
+                <strong>🌟 Final Thought:</strong> If you are documenting your learning journey, understanding lambda 
+                functions is an important step toward writing more efficient and Pythonic code. Keep practicing! 💪
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fahad's Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
