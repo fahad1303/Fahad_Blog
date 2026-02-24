@@ -170,15 +170,6 @@
             background: #f9f9f9;
         }
 
-        .advantage-box {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            color: #333;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1rem 0;
-            border-left: 5px solid #43e97b;
-        }
-
         .disadvantage-box {
             background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
             color: #333;
@@ -247,6 +238,28 @@
         strong {
             color: #764ba2;
         }
+
+        .code-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #fff;
+        }
+
+        .code-box code {
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .output-box pre,
+        .output-box code {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: white;
+            font-family: 'Courier New', monospace;
+        }
     </style>
 </head>
 <body>
@@ -282,7 +295,7 @@
         <div class="section">
             <h2>🔧 Syntax of Lambda Function</h2>
             <div class="code-box">
-<code>lambda arguments: expression</code>
+                <pre><code>lambda arguments: expression</code></pre>
             </div>
             <div class="example-container">
                 <div class="list-item"><span class="syntax-keyword">lambda</span> → Keyword used to define the function</div>
@@ -298,14 +311,14 @@
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-square = lambda x: x * x
-print(square(5))
+                    <pre><code>square = lambda x: x * x
+print(square(5))</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-25
+                    <pre><code>25</code></pre>
                 </div>
             </div>
             <p>
@@ -321,14 +334,14 @@ print(square(5))
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-multiply = lambda a, b: a * b
-print(multiply(4, 6))
+                    <pre><code>multiply = lambda a, b: a * b
+print(multiply(4, 6))</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-24
+                    <pre><code>24</code></pre>
                 </div>
             </div>
             <p>
@@ -339,23 +352,22 @@ print(multiply(4, 6))
 
         <!-- Comparing def and Lambda -->
         <div class="section">
-            <h2>⚖️ Comparing `def` Function and Lambda Function</h2>
+            <h2>⚖️ Comparing 'def' Function and Lambda Function</h2>
             
-            <h3>Using `def` Keyword (Traditional Approach)</h3>
+            <h3>Using 'def' Keyword (Traditional Approach)</h3>
             <p>The traditional way of defining a function that cubes a number:</p>
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-def cube(x):
+                    <pre><code>def cube(x):
     return x * x * x
-
-print(cube(6))
+print(cube(6))</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-216
+                    <pre><code>216</code></pre>
                 </div>
             </div>
 
@@ -364,14 +376,14 @@ print(cube(6))
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-cube = lambda x: x * x * x
-print(cube(6))
+                    <pre><code>cube = lambda x: x * x * x
+print(cube(6))</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-216
+                    <pre><code>216</code></pre>
                 </div>
             </div>
 
@@ -389,21 +401,21 @@ print(cube(6))
                 (functions that take other functions as input).
             </p>
 
-            <h3>Example 1: Using `map()` Function</h3>
+            <h3>Example 1: Using 'map()' Function</h3>
             <p>Apply a lambda function to each element in a list:</p>
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-numbers = [1, 2, 3, 4]
+                    <pre><code>numbers = [1, 2, 3, 4]
 
 squared_numbers = list(map(lambda x: x * x, numbers))
-print(squared_numbers)
+print(squared_numbers)</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-[1, 4, 9, 16]
+                    <pre><code>[1, 4, 9, 16]</code></pre>
                 </div>
             </div>
             <p>
@@ -411,21 +423,21 @@ print(squared_numbers)
                 Perfect for transformations! 🔄
             </p>
 
-            <h3>Example 2: Using `filter()` Function</h3>
+            <h3>Example 2: Using 'filter()' Function</h3>
             <p>Filter elements from a list based on a condition:</p>
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-numbers = [10, 15, 20, 25, 30]
+                    <pre><code>numbers = [10, 15, 20, 25, 30]
 
 even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
-print(even_numbers)
+print(even_numbers)</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-[10, 20, 30]
+                    <pre><code>[10, 20, 30]</code></pre>
                 </div>
             </div>
             <p>
@@ -433,21 +445,21 @@ print(even_numbers)
                 Great for data filtering! 🎯
             </p>
 
-            <h3>Example 3: Using `sorted()` with Lambda</h3>
+            <h3>Example 3: Using 'sorted()' with Lambda</h3>
             <p>Sort data based on a custom key using lambda:</p>
             <div class="example-container">
                 <div class="example-title">💻 Code:</div>
                 <div class="code-box">
-students = [("Ali", 85), ("Sara", 92), ("John", 78)]
+                    <pre><code>students = [("Ali", 85), ("Sara", 92), ("John", 78)]
 
 sorted_students = sorted(students, key=lambda x: x[1])
-print(sorted_students)
+print(sorted_students)</code></pre>
                 </div>
             </div>
             <div class="example-container">
                 <div class="example-title">⚡ Output:</div>
                 <div class="output-box">
-[('John', 78), ('Ali', 85), ('Sara', 92)]
+                    <pre><code>[('John', 78), ('Ali', 85), ('Sara', 92)]</code></pre>
                 </div>
             </div>
             <p>
@@ -458,7 +470,7 @@ print(sorted_students)
 
         <!-- When to Use -->
         <div class="section">
-            <h2>✅ When to Use Lambda Instead of `def`</h2>
+            <h2>✅ When to Use Lambda Instead of 'def'</h2>
             <p>Lambda functions are useful in the following scenarios:</p>
 
             <div class="advantage-box">
@@ -506,7 +518,7 @@ print(sorted_students)
 
         <!-- Comparison Table -->
         <div class="section">
-            <h2>📊 Key Differences Between `def` and Lambda</h2>
+            <h2>📊 Key Differences Between 'def' and Lambda</h2>
             <table>
                 <thead>
                     <tr>
@@ -553,10 +565,6 @@ print(sorted_students)
                 cleaner and more compact. For complex logic, traditional functions defined using the <code>def</code> keyword 
                 are more appropriate and maintainable.
             </p>
-            <div class="advantage-box">
-                <strong>🌟 Final Thought:</strong> If you are documenting your learning journey, understanding lambda 
-                functions is an important step toward writing more efficient and Pythonic code. Keep practicing! 💪
-            </div>
         </div>
     </div>
 
